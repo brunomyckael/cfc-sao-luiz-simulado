@@ -125,12 +125,8 @@ main{max-width:1400px;margin:28px auto;padding:0 26px}
 }
 @media(max-width:650px){
   header{height:62px}.app-shell{min-height:calc(100vh - 62px)}
-  .sidebar{position:fixed;left:0;bottom:0;top:auto;width:100%;height:66px;flex-direction:row;padding:6px;z-index:100}
-  .side-brand,.side-goal{display:none}
-  .side-nav{width:100%;display:flex;justify-content:space-around;gap:2px;margin:0}
-  .side-item{flex:1;justify-content:center;padding:7px 2px;font-size:18px;border-radius:9px}
-  .side-item span{display:none}
-  .content-area{padding-bottom:66px}
+  .sidebar{display:none}
+  .content-area{padding-bottom:0}
   .topbar{padding:0 13px}.brand-title{font-size:15px}.brand-subtitle{font-size:9px}.top-instructor span:first-child{font-size:12px}
   main{padding:0 14px;margin:18px auto}.hero-banner{min-height:145px;padding:24px 20px}.hero-title{font-size:38px}.hero-kicker{font-size:11px}.hero-subtitle{font-size:13px}
   .hero{padding:20px}.card{padding:18px}
@@ -157,6 +153,24 @@ main{max-width:1400px;margin:28px auto;padding:0 26px}
   .open-features{gap:7px}
   .open-features span{font-size:11px}
 }
+
+/* ===== V9.2 final polish ===== */
+@media(max-width:650px){
+  .sidebar{display:none!important}
+  .content-area{padding-bottom:0!important}
+  main{padding:0 14px;margin:16px auto}
+  .topbar{padding:0 13px}
+  .top-instructor{gap:8px}
+  .hero-banner{min-height:145px;padding:24px 20px}
+  .hero-title{font-size:38px}
+  .open-card{margin-bottom:14px}
+  #quiz .card{margin-top:10px!important}
+}
+
+/* V9.3 — quiz focus */
+.quiz-focus #openPlatform{display:none!important}
+#quiz{max-width:980px;margin:0 auto}
+@media(max-width:650px){#quiz{width:100%}.quiz-focus .hero-banner{display:none!important}}
 </style>
 </head>
 <header>
@@ -190,8 +204,6 @@ main{max-width:1400px;margin:28px auto;padding:0 26px}
       <button class="side-item" onclick="openSubjects()">▤ <span>Estudar por Assunto</span></button>
       <button class="side-item" onclick="startWrongQuestions()">✓ <span>Praticar Meus Erros</span></button>
       <button class="side-item" onclick="openDashboard()">▥ <span>Desempenho</span></button>
-      <button class="side-item" onclick="openDashboard()">↗ <span>Evolução</span></button>
-      <button class="side-item" onclick="openDashboard()">★ <span>Conquistas</span></button>
       <button class="side-item" onclick="openDashboard()">◷ <span>Histórico</span></button>
     </nav>
     <div class="side-goal">
@@ -336,7 +348,6 @@ main{max-width:1400px;margin:28px auto;padding:0 26px}
 
 <section id="quiz" class="hidden">
 <div class="topline"><span id="counter" class="pill"></span><span id="difficulty" class="pill"></span></div>
-<div class="progress"><div class="bar" id="bar"></div></div>
 <div class="card" style="margin-top:14px">
 <div id="module" class="pill"></div>
 <div id="plate" class="plate-wrap hidden"><div><div class="pill" style="margin-bottom:8px">👀 Observe a placa</div><img id="plateImg" class="plate-img" alt=""></div></div>
@@ -367,7 +378,7 @@ const $=id=>document.getElementById(id);
 function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
 
 const STORAGE_KEY="cnhgo_progress_v6";
-const PLATE_IMAGES={"R-100":"placas/R100.png","R-102":"placas/R102.png","R-104":"placas/R104.png","R-106":"placas/R106.png","R-108":"placas/R108.png","R-11":"placas/R11.png","R-110":"placas/R110.png","R-112":"placas/R112.png","R-113":"placas/R113.jpg","R-114":"placas/R114.jpg","R-115":"placas/R115.jpg","R-116":"placas/R116.jpg","R-117":"placas/R117.jpg","R-118":"placas/R118.jpg","R-12":"placas/R12.png","R-13":"placas/R13.png","R-14":"placas/R14.png","R-15":"placas/R15.png","R-16":"placas/R16.png","R-17":"placas/R17.png","R-18":"placas/R18.png","R-19":"placas/R19.png","R-20":"placas/R20.png","R-21":"placas/R21.png","R-22":"placas/R22.png","R-23":"placas/R23.png","R-24":"placas/R24.png","R-25":"placas/R25.png","R-26":"placas/R26.png","R-27":"placas/R27.png","R-28":"placas/R28.png","R-29":"placas/R29.png","R-30":"placas/R30.png","R-31":"placas/R31.png","R-32":"placas/R32.png","R-33":"placas/R33.png","R-34":"placas/R34.png","R-35":"placas/R35.png","R-36":"placas/R36.png","R-37":"placas/R37.png","R-38":"placas/R38.png","R-39":"placas/R39.png","R-40":"placas/R40.png","R-41":"placas/R41.png","R-42":"placas/R42.png","R-43":"placas/R43.png","R-44":"placas/R44.png","R-45":"placas/R45.png","R-46":"placas/R46.png","R-47":"placas/R47.png","R-48":"placas/R48.png","R-49":"placas/R49.png","R-50":"placas/R50.png","R-51":"placas/R51.png","R-52":"placas/R52.png","R-53":"placas/R53.png","R-54":"placas/R54.png","R-55":"placas/R55.png","R-56":"placas/R56.png","R-57":"placas/R57.png","R-58":"placas/R58.png","R-59":"placas/R59.png","R-60":"placas/R60.png","R-61":"placas/R61.png","R-62":"placas/R62.png","R-63":"placas/R63.png","R-64":"placas/R64.png","R-65":"placas/R65.png","R-66":"placas/R66.png","R-67":"placas/R67.png","R-68":"placas/R68.png","R-69":"placas/R69.png","R-70":"placas/R70.png","R-71":"placas/R71.png","R-72":"placas/R72.png","R-73":"placas/R73.png","R-74":"placas/R74.png","R-75":"placas/R75.png","R-76":"placas/R76.png","R-78":"placas/R78.png","R-80":"placas/R80.png","R-82":"placas/R82.png","R-83":"placas/R83.png","R-84":"placas/R84.png","R-85":"placas/R85.png","R-86":"placas/R86.png","R-87":"placas/R87.png","R-88":"placas/R88.png","R-89":"placas/R89.jpg","R-90":"placas/R90.png","R-91":"placas/R91.jpg","R-92":"placas/R92.png","R-94":"placas/R94.png","R-96":"placas/R96.png","R-98":"placas/R98.png"};
+const PLATE_IMAGES={"R-100":"placas/R100.png","R-102":"placas/R102.png","R-104":"placas/R104.png","R-106":"placas/R106.png","R-108":"placas/R108.png","R-11":"placas_pdf/R11.png","R-110":"placas/R110.png","R-112":"placas/R112.png","R-113":"placas/R113.jpg","R-114":"placas/R114.jpg","R-115":"placas/R115.jpg","R-116":"placas/R116.jpg","R-117":"placas/R117.jpg","R-118":"placas/R118.jpg","R-12":"placas_pdf/R12.png","R-13":"placas_pdf/R13.png","R-14":"placas_pdf/R14.png","R-15":"placas_pdf/R15.png","R-16":"placas_pdf/R16.png","R-17":"placas_pdf/R17.png","R-18":"placas_pdf/R18.png","R-19":"placas_pdf/R19.png","R-20":"placas_pdf/R20.png","R-21":"placas_pdf/R21.png","R-22":"placas_pdf/R22.png","R-23":"placas_pdf/R23.png","R-24":"placas/R24.png","R-25":"placas/R25.png","R-26":"placas_pdf/R26.png","R-27":"placas_pdf/R27.png","R-28":"placas_pdf/R28.png","R-29":"placas_pdf/R29.png","R-30":"placas_pdf/R30.png","R-31":"placas_pdf/R31.png","R-32":"placas_pdf/R32.png","R-33":"placas_pdf/R33.png","R-34":"placas_pdf/R34.png","R-35":"placas/R35.png","R-36":"placas/R36.png","R-37":"placas_pdf/R37.png","R-38":"placas_pdf/R38.png","R-39":"placas_pdf/R39.png","R-40":"placas_pdf/R40.png","R-41":"placas_pdf/R41.png","R-42":"placas/R42.png","R-43":"placas/R43.png","R-44":"placas_pdf/R44.png","R-45":"placas/R45.png","R-46":"placas/R46.png","R-47":"placas/R47.png","R-48":"placas/R48.png","R-49":"placas/R49.png","R-50":"placas/R50.png","R-51":"placas/R51.png","R-52":"placas/R52.png","R-53":"placas/R53.png","R-54":"placas/R54.png","R-55":"placas/R55.png","R-56":"placas/R56.png","R-57":"placas/R57.png","R-58":"placas/R58.png","R-59":"placas/R59.png","R-60":"placas/R60.png","R-61":"placas/R61.png","R-62":"placas/R62.png","R-63":"placas/R63.png","R-64":"placas/R64.png","R-65":"placas/R65.png","R-66":"placas/R66.png","R-67":"placas/R67.png","R-68":"placas/R68.png","R-69":"placas/R69.png","R-70":"placas/R70.png","R-71":"placas/R71.png","R-72":"placas/R72.png","R-73":"placas/R73.png","R-74":"placas/R74.png","R-75":"placas/R75.png","R-76":"placas/R76.png","R-78":"placas/R78.png","R-80":"placas/R80.png","R-82":"placas/R82.png","R-83":"placas/R83.png","R-84":"placas/R84.png","R-85":"placas/R85.png","R-86":"placas/R86.png","R-87":"placas/R87.png","R-88":"placas/R88.png","R-89":"placas/R89.jpg","R-90":"placas/R90.png","R-91":"placas/R91.jpg","R-92":"placas/R92.png","R-94":"placas/R94.png","R-96":"placas/R96.png","R-98":"placas/R98.png","R-1":"placas_pdf/R1.png","R-2":"placas_pdf/R2.png","R-3":"placas_pdf/R3.png","R-4a":"placas_pdf/R4a.png","R-4b":"placas_pdf/R4b.png","R-5a":"placas_pdf/R5a.png","R-5b":"placas_pdf/R5b.png","R-6a":"placas_pdf/R6a.png","R-6b":"placas_pdf/R6b.png","R-6c":"placas_pdf/R6c.png","R-7":"placas_pdf/R7.png","R-8a":"placas_pdf/R8a.png","R-8b":"placas_pdf/R8b.png","R-9":"placas_pdf/R9.png","R-10":"placas_pdf/R10.png","R-24a":"placas_pdf/R24a.png","R-24b":"placas_pdf/R24b.png","R-25a":"placas_pdf/R25a.png","R-25b":"placas_pdf/R25b.png","R-25c":"placas_pdf/R25c.png","R-25d":"placas_pdf/R25d.png","R-35a":"placas_pdf/R35a.png","R-35b":"placas_pdf/R35b.png","R-36a":"placas_pdf/R36a.png","R-36b":"placas_pdf/R36b.png","R-42a":"placas_pdf/R42a.png","R-42b":"placas_pdf/R42b.png","R-43a":"placas_pdf/R43a.png","R-43b":"placas_pdf/R43b.png","A-1a":"placas_pdf/A1a.png","A-1b":"placas_pdf/A1b.png","A-2a":"placas_pdf/A2a.png","A-2b":"placas_pdf/A2b.png","A-3a":"placas_pdf/A3a.png","A-3b":"placas_pdf/A3b.png","A-4a":"placas_pdf/A4a.png","A-4b":"placas_pdf/A4b.png","A-5a":"placas_pdf/A5a.png","A-5b":"placas_pdf/A5b.png","A-6":"placas_pdf/A6.png","A-7a":"placas_pdf/A7a.png","A-7b":"placas_pdf/A7b.png","A-8":"placas_pdf/A8.png","A-9":"placas_pdf/A9.png","A-10a":"placas_pdf/A10a.png","A-10b":"placas_pdf/A10b.png","A-11a":"placas_pdf/A11a.png","A-11b":"placas_pdf/A11b.png","A-12":"placas_pdf/A12.png","A-13a":"placas_pdf/A13a.png","A-13b":"placas_pdf/A13b.png","A-14":"placas_pdf/A14.png","A-15":"placas_pdf/A15.png","A-16":"placas_pdf/A16.png","A-17":"placas_pdf/A17.png","A-18":"placas_pdf/A18.png","A-19":"placas_pdf/A19.png","A-20a":"placas_pdf/A20a.png","A-20b":"placas_pdf/A20b.png","A-21a":"placas_pdf/A21a.png","A-21b":"placas_pdf/A21b.png","A-21c":"placas_pdf/A21c.png","A-21d":"placas_pdf/A21d.png","A-21e":"placas_pdf/A21e.png","A-22":"placas_pdf/A22.png","A-23":"placas_pdf/A23.png","A-24":"placas_pdf/A24.png","A-25":"placas_pdf/A25.png","A-26a":"placas_pdf/A26a.png","A-26b":"placas_pdf/A26b.png","A-27":"placas_pdf/A27.png","A-28":"placas_pdf/A28.png","A-29":"placas_pdf/A29.png","A-30a":"placas_pdf/A30a.png","A-30b":"placas_pdf/A30b.png","A-30c":"placas_pdf/A30c.png","A-31":"placas_pdf/A31.png","A-32a":"placas_pdf/A32a.png","A-32b":"placas_pdf/A32b.png","A-33a":"placas_pdf/A33a.png","A-33b":"placas_pdf/A33b.png","A-34":"placas_pdf/A34.png","A-35":"placas_pdf/A35.png","A-36":"placas_pdf/A36.png","A-37":"placas_pdf/A37.png","A-38":"placas_pdf/A38.png","A-39":"placas_pdf/A39.png","A-40":"placas_pdf/A40.png","A-41":"placas_pdf/A41.png","A-42a":"placas_pdf/A42a.png","A-42b":"placas_pdf/A42b.png","A-42c":"placas_pdf/A42c.png","A-43":"placas_pdf/A43.png","A-44":"placas_pdf/A44.png","A-45":"placas_pdf/A45.png","A-46":"placas_pdf/A46.png","A-47":"placas_pdf/A47.png","A-48":"placas_pdf/A48.png","A-49a":"placas_pdf/A49a.png","A-49b":"placas_pdf/A49b.png","A-50a":"placas_pdf/A50a.png","A-50b":"placas_pdf/A50b.png","DEF-01":"placas_pdf/DEF01.png","SAU-06":"placas_pdf/SAU06.png","SAU-08":"placas_pdf/SAU08.png","SAU-09":"placas_pdf/SAU09.png","SAU-10":"placas_pdf/SAU10.png","SAU-12":"placas_pdf/SAU12.png","SAU-13":"placas_pdf/SAU13.png","SAU-18":"placas_pdf/SAU18.png","SAU-19":"placas_pdf/SAU19.png","SAU-21":"placas_pdf/SAU21.png","SAU-26":"placas_pdf/SAU26.png","TNA-05":"placas_pdf/TNA05.png","TNA-06":"placas_pdf/TNA06.png","THC-05":"placas_pdf/THC05.png","THC-11":"placas_pdf/THC11.png","TAR-03":"placas_pdf/TAR03.png","A-32a e A-32b":"placas_pdf/A32a.png"};
 
 function loadProgress(){
   try{return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {seen:[],wrong:[],attempts:[]};}
@@ -460,9 +471,10 @@ function render(){
   $("counter").textContent=`Questão ${index+1} de ${quiz.length}`;
   $("difficulty").textContent=q.difficulty;
   $("module").textContent=q.category+" • "+q.module;
-  if(q.image){
-    $("plateImg").src=q.image;
-    $("plateImg").alt=q.imageAlt||"Placa de sinalização";
+  const plateSrc=(q.plateCode && (PLATE_IMAGES[q.plateCode] || PLATE_IMAGES[q.plateCode.split(" e ")[0]])) || q.image;
+  if(plateSrc){
+    $("plateImg").src=plateSrc;
+    $("plateImg").alt=q.plateCode ? `Placa ${q.plateCode}` : (q.imageAlt||"Placa de sinalização");
     $("plate").classList.remove("hidden");
   }else{
     $("plate").classList.add("hidden");
@@ -480,9 +492,8 @@ function render(){
     $("options").appendChild(b);
   });
   $("nextBtn").textContent=index===quiz.length-1?"Finalizar":"Próxima";
-  $("bar").style.width=((index)/quiz.length*100)+"%";
   const done=answers.filter(v=>v!==undefined).length;
-  $("scoreTop").textContent=`${done}/${answers.length}`;
+  $("scoreTop").textContent=`${done}/${quiz.length}`;
 }
 
 function answer(i,btn){
@@ -496,7 +507,7 @@ function answer(i,btn){
   });
   $("explain").textContent=q.explanation;
   $("explain").classList.remove("hidden");
-  $("scoreTop").textContent=`${answers.filter(Boolean).length}/${answers.length}`;
+  $("scoreTop").textContent=`${answers.filter(Boolean).length}/${quiz.length}`;
 
   const p=progress();
   p.responses=p.responses||[];
@@ -612,6 +623,7 @@ function showHowToShare(){
 }
 function show(id){
   ["home","subjects","dashboard","custom","quiz","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id));
+  $("openPlatform").classList.toggle("hidden",id!=="home");
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function goHome(){show("home");$("scoreTop").textContent="0/0"}
