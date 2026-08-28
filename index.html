@@ -13,7 +13,7 @@ main{max-width:1050px;margin:28px auto;padding:0 18px}.hero{background:var(--car
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:22px}.mode{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;cursor:pointer;transition:.2s}.mode:hover{transform:translateY(-2px);box-shadow:0 8px 20px #1111}.mode strong{display:block;font-size:18px;margin-bottom:6px}.mode small{color:var(--muted);line-height:1.4}
 button{border:0;border-radius:12px;padding:13px 18px;font-weight:800;cursor:pointer}.primary{background:var(--yellow);color:#111}.secondary{background:#e8f0f9;color:#123}
 .topline{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.pill{display:inline-flex;padding:6px 10px;border-radius:999px;background:#eef0f3;color:#444;font-size:12px;font-weight:800}.progress{height:9px;background:#e5e7eb;border-radius:99px;overflow:hidden}.bar{height:100%;background:var(--blue2);width:0;transition:.2s}
-.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 8px 25px #1111}.question{font-size:22px;line-height:1.4;margin:18px 0}.options{display:grid;gap:10px}.opt{background:#fafafa;border:2px solid var(--line);text-align:left;font-weight:600;line-height:1.4}.opt:hover{border-color:#bbb}.opt.selected{border-color:#d4aa00;background:#fff8cc}.opt.correct{border-color:var(--ok);background:#eaf8f0}.opt.wrong{border-color:var(--bad);background:#fff0f0}.explain{margin-top:18px;padding:15px;border-radius:12px;background:#f1f3f5;line-height:1.5}.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.result{text-align:center}.score{font-size:60px;font-weight:900;margin:10px 0}.approved{color:var(--ok)}.failed{color:var(--bad)}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.stat{background:#f5f6f8;border-radius:14px;padding:15px}.stat b{display:block;font-size:24px}.review{display:grid;gap:10px;text-align:left;margin-top:20px}.review div{padding:14px;border:1px solid var(--line);border-radius:12px}.review .ok{border-left:5px solid var(--ok)}.review .bad{border-left:5px solid var(--bad)}.footer{color:#7b818c;font-size:12px;line-height:1.5;margin:22px 0 10px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 8px 25px #1111}.question{font-size:22px;line-height:1.4;margin:18px 0}.options{display:grid;gap:10px}.opt{background:#fafafa;border:2px solid var(--line);text-align:left;font-weight:600;line-height:1.4}.opt:hover{border-color:#bbb}.opt.selected{border-color:#d4aa00;background:#fff8cc}.opt.correct{border-color:var(--ok);background:#eaf8f0}.opt.wrong{border-color:var(--bad);background:#fff0f0}.explain{display:none;margin-top:18px;padding:15px;border-radius:12px;background:#f1f3f5;line-height:1.5}.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.result{text-align:center}.score{font-size:60px;font-weight:900;margin:10px 0}.approved{color:var(--ok)}.failed{color:var(--bad)}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.stat{background:#f5f6f8;border-radius:14px;padding:15px}.stat b{display:block;font-size:24px}.review{display:grid;gap:10px;text-align:left;margin-top:20px}.review div{padding:14px;border:1px solid var(--line);border-radius:12px}.review .ok{border-left:5px solid var(--ok)}.review .bad{border-left:5px solid var(--bad)}.footer{color:#7b818c;font-size:12px;line-height:1.5;margin:22px 0 10px}
 .hidden{display:none!important}@media(max-width:650px){.hero,.card{padding:20px}.statgrid{grid-template-columns:1fr}.question{font-size:19px}.header{align-items:flex-start;flex-direction:column}}
 
 .plate-wrap{display:flex;justify-content:center;align-items:center;margin:18px 0 10px;padding:14px;background:#f4f8fd;border:1px solid #d8e3f0;border-radius:16px}
@@ -171,6 +171,106 @@ main{max-width:1400px;margin:28px auto;padding:0 26px}
 .quiz-focus #openPlatform{display:none!important}
 #quiz{max-width:980px;margin:0 auto}
 @media(max-width:650px){#quiz{width:100%}.quiz-focus .hero-banner{display:none!important}}
+
+/* V9.4 timer fix */
+#examTimerWrap{display:flex;justify-content:flex-end;align-items:center;margin:0 0 12px}
+.exam-timer{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#062d63;color:#fff;border:2px solid #ffbd20;border-radius:12px;padding:9px 13px;font-weight:900;font-variant-numeric:tabular-nums;min-width:98px}
+.exam-timer.warning{background:#8b5a00}.exam-timer.danger{background:#a51f1f;animation:timerPulse 1s infinite}
+@keyframes timerPulse{50%{transform:scale(1.03)}}
+@media(max-width:650px){#examTimerWrap{justify-content:center}.exam-timer{width:100%;max-width:180px}}
+
+/* V9.4.1 — footer CFC */
+.site-footer{
+  max-width:1400px;margin:30px auto 0;padding:22px 26px;
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+  border-top:1px solid #dce6f2;color:#66778e;font-size:12px;text-align:center
+}
+.site-footer strong{color:#062d63;font-size:15px;letter-spacing:.7px}
+.site-footer span{color:#8290a3}
+.site-footer a{color:#0b55b8;font-weight:800;text-decoration:none}
+.site-footer a:hover{text-decoration:underline}
+@media(max-width:650px){
+  .site-footer{margin-top:20px;padding:18px 14px;gap:7px;flex-direction:column}
+}
+
+/* ===== V9.4.2 — only logo + color palette ===== */
+:root{
+  --yellow:#f5b51b;
+  --gold:#ffbd20;
+  --blue:#0b55b8;
+  --blue2:#176dd0;
+  --blue3:#102c55;
+  --dark:#f4f7fb;
+  --muted:#b8c5d6;
+  --bg:#06101d;
+  --card:#0b1726;
+  --line:#1d3047;
+  --ok:#35b96b;
+  --bad:#ef6262;
+}
+body{background:#06101d;color:#f4f7fb}
+header{background:linear-gradient(135deg,#020b14,#0b55b8)}
+.sidebar{background:linear-gradient(180deg,#071b32,#020b14);box-shadow:5px 0 25px #0008}
+.side-brand{border-bottom-color:#ffffff18}
+.side-brand-desc{color:#aebfd4}
+.side-item:hover{background:#ffffff12}
+.side-item.active{background:linear-gradient(90deg,#ffbd20,#f1a916);color:#071a35}
+.side-goal{border-color:#ffbd20;background:#0a2340}
+.content-area{background:#06101d}
+.hero-banner{background:linear-gradient(110deg,#06152a 0%,#0b55b8 52%,#020b14 100%)}
+.hero-banner:after{border-color:#ffbd2040}
+.hero-subtitle{color:#e8eef7}
+.hero,.card{background:#0b1726;border-color:#1d3047;box-shadow:0 10px 28px #0008}
+.mode{background:#0d1b2c;border-color:#1d3047;color:#f4f7fb}
+.mode:hover{border-color:#2d67aa;box-shadow:0 8px 18px #0008}
+.primary{background:linear-gradient(90deg,#0b55b8,#176dd0);color:#fff}
+.secondary{background:#122640;color:#dce8f6}
+.question{color:#f5f8fc}
+.opt{background:#0d1b2b;border-color:#1d3047;color:#f5f8fc}
+.opt:hover{border-color:#2e75c8;background:#10243b}
+.opt.selected{border-color:#ffbd20;background:#2b2610}
+.opt.correct{border-color:#35b96b;background:#0e2a1c}
+.opt.wrong{border-color:#ef6262;background:#351619}
+.progress{background:#27384c}
+.bar{background:linear-gradient(90deg,#0b55b8,#ffbd20)}
+.pill{background:#102c55;color:#a9cdf7}
+.stat{background:#0d1b2b;border-color:#1d3047}
+.plate-wrap{background:#081522;border-color:#1d3047}
+.review div{background:#0d1b2b;border-color:#1d3047}
+.explain{background:#101f31}
+.footer{color:#93a3b7}
+.site-footer{border-top-color:#1d3047;color:#aebbd0}
+.site-footer strong{color:#3d8df2}
+.site-footer span{color:#aebbd0}
+.site-footer a{color:#45a1ff}
+
+/* V9.4.4 — Desempenho e Histórico com funções diferentes */
+.performance-card,.history-card{
+  background:#0d1b2b;border:1px solid #1d3047;border-radius:16px;
+  padding:18px;margin:12px 0
+}
+.performance-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.performance-stat{background:#10243b;border:1px solid #234361;border-radius:12px;padding:14px;text-align:center}
+.performance-stat strong{display:block;font-size:24px;color:#ffbd20}
+.performance-stat span{font-size:12px;color:#aebbd0}
+.history-row{display:flex;justify-content:space-between;gap:12px;align-items:center;
+  padding:13px 0;border-bottom:1px solid #1d3047}
+.history-row:last-child{border-bottom:0}
+.history-date{color:#aebbd0;font-size:12px}.history-score{font-weight:900}
+@media(max-width:650px){.performance-grid{grid-template-columns:1fr 1fr}}
+
+.simple-history{background:#0d1b2b;border:1px solid #1d3047;border-radius:16px;padding:18px;margin:12px 0}
+.simple-history-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid #1d3047}
+.simple-history-row:last-child{border-bottom:0}
+.simple-history-info{display:flex;flex-direction:column;gap:4px}
+.simple-history-date{font-size:13px;color:#b8c5d6}
+.simple-history-score{font-size:16px;font-weight:900;color:#ffbd20}
+.simple-history-review{border:1px solid #2e75c8;background:#102c55;color:#fff;border-radius:9px;padding:8px 12px;font-weight:800;cursor:pointer;white-space:nowrap}
+.old-review{background:#0b1726;border:1px solid #1d3047;border-radius:16px;padding:18px;margin:12px 0}
+.old-review-item{padding:12px 0;border-bottom:1px solid #1d3047}
+.old-review-item:last-child{border-bottom:0}
+.old-review-item.ok{border-left:4px solid #35b96b;padding-left:12px}
+.old-review-item.bad{border-left:4px solid #ef6262;padding-left:12px}
 </style>
 </head>
 <header>
@@ -204,7 +304,7 @@ main{max-width:1400px;margin:28px auto;padding:0 26px}
       <button class="side-item" onclick="openSubjects()">▤ <span>Estudar por Assunto</span></button>
       <button class="side-item" onclick="startWrongQuestions()">✓ <span>Praticar Meus Erros</span></button>
       <button class="side-item" onclick="openDashboard()">▥ <span>Desempenho</span></button>
-      <button class="side-item" onclick="openDashboard()">◷ <span>Histórico</span></button>
+      <button class="side-item" onclick="openHistoryPanel()">◷ <span>Histórico</span></button>
     </nav>
     <div class="side-goal">
       <div class="goal-icon">🏆</div>
@@ -331,6 +431,22 @@ main{max-width:1400px;margin:28px auto;padding:0 26px}
   </div>
 </section>
 
+
+<section id="history" class="hidden">
+  <div class="card">
+    <div class="topline">
+      <div>
+        <span class="pill">HISTÓRICO</span>
+        <h2 style="margin:10px 0 4px">Provas realizadas</h2>
+        <p style="color:var(--muted);margin:0">Data, hora e número de acertos.</p>
+      </div>
+      <button class="secondary" onclick="goHome()">Voltar</button>
+    </div>
+    <div id="historyList" style="margin-top:14px"></div>
+  </div>
+</section>
+
+
 <section id="custom" class="hidden">
 <div class="card">
   <div class="topline">
@@ -347,6 +463,8 @@ main{max-width:1400px;margin:28px auto;padding:0 26px}
 </section>
 
 <section id="quiz" class="hidden">
+<div id="examTimerWrap"><div id="examTimer" class="exam-timer" aria-live="polite">⏱ 60:00</div></div>
+
 <div class="topline"><span id="counter" class="pill"></span><span id="difficulty" class="pill"></span></div>
 <div class="card" style="margin-top:14px">
 <div id="module" class="pill"></div>
@@ -394,7 +512,21 @@ function smartPool(base){
 }
 function pick(base,n){return shuffle(smartPool(base)).slice(0,Math.min(n,base.length))}
 
-function startExam(){mode="exam";quiz=pick(BANK,30);index=0;answers=[];show("quiz");render()}
+
+let examTimerInterval=null, examSecondsLeft=3600;
+function stopExamTimer(){if(examTimerInterval){clearInterval(examTimerInterval);examTimerInterval=null;}}
+function ensureExamTimer(){const e=document.getElementById("examTimer");if(e)e.textContent="⏱ "+String(Math.floor(examSecondsLeft/60)).padStart(2,"0")+":"+String(examSecondsLeft%60).padStart(2,"0");}
+
+function showReviewExplanations(){
+  document.querySelectorAll(".explain").forEach(el=>{el.style.display="block";});
+}
+function hideQuestionExplanations(){
+  document.querySelectorAll(".explain").forEach(el=>{el.style.display="none";});
+}
+function startExamTimer(){stopExamTimer();examSecondsLeft=3600;ensureExamTimer();examTimerInterval=setInterval(()=>{examSecondsLeft--;ensureExamTimer();if(examSecondsLeft<=0){stopExamTimer();alert("⏰ O tempo da prova terminou.");if(typeof finishQuiz==="function")finishQuiz();else if(typeof finish==="function")finish();}},1000);}
+function startExam(){
+  hideQuestionExplanations();
+  startExamTimer();mode="exam";quiz=pick(BANK,30);index=0;answers=[];show("quiz");render()}
 function startQuick(){mode="quick";quiz=pick(BANK,10);index=0;answers=[];show("quiz");render()}
 function openSubjects(){
   const cats=[...new Set(BANK.map(q=>q.category))];
@@ -525,6 +657,8 @@ function nextQuestion(){
 }
 
 function showResult(){
+  showReviewExplanations();
+  stopExamTimer();
   show("result");
   const c=answers.filter(Boolean).length,w=quiz.length-c,p=Math.round(c/quiz.length*100);
   $("score").textContent=`${c}/${quiz.length}`;
@@ -534,7 +668,7 @@ function showResult(){
 
   const prog=progress();
   prog.attempts=prog.attempts||[];
-  prog.attempts.push({date:new Date().toISOString(),correct:c,total:quiz.length,percent:p,mode});
+  prog.attempts.push({date:new Date().toISOString(),correct:c,total:quiz.length,percent:p,mode,questionIds:quiz.map(q=>q.id),answers:[...answers]});
   if(prog.attempts.length>50)prog.attempts=prog.attempts.slice(-50);
   saveProgress(prog);
 
@@ -622,11 +756,81 @@ function showHowToShare(){
   $("shareHelp").classList.toggle("hidden");
 }
 function show(id){
-  ["home","subjects","dashboard","custom","quiz","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id));
+  ["home","subjects","dashboard","history","custom","quiz","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id));
   $("openPlatform").classList.toggle("hidden",id!=="home");
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function goHome(){show("home");$("scoreTop").textContent="0/0"}
 </script>
+
+<footer class="site-footer">
+  <strong>CFC SÃO LUIZ</strong>
+  <span>Cocalzinho de Goiás</span>
+  <a href="https://wa.me/556233391523" target="_blank" rel="noopener">💬 WhatsApp: (62) 3339-1523</a>
+</footer>
+
+
+
+
+<script>
+/* ===== V9.4.5 CORRIGIDA — Desempenho separado do Histórico ===== */
+function openHistoryPanel(){
+  show("history");
+  renderHistory();
+}
+function renderHistory(){
+  const list=$("historyList");
+  const attempts=(progress().attempts||[]);
+  if(!attempts.length){
+    list.innerHTML='<p style="color:var(--muted)">Nenhuma prova realizada ainda.</p>';
+    return;
+  }
+  list.innerHTML=attempts.slice().reverse().map((a,rev)=>{
+    const idx=attempts.length-1-rev;
+    const d=new Date(a.date);
+    const date=d.toLocaleDateString("pt-BR");
+    const time=d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+    return `<div class="simple-history-row">
+      <div class="simple-history-info">
+        <span class="simple-history-date">${date} às ${time}</span>
+        <span class="simple-history-score">${a.correct}/${a.total} acertos</span>
+      </div>
+      <button class="simple-history-review" onclick="viewPastExam(${idx})">Ver prova</button>
+    </div>`;
+  }).join("");
+}
+function viewPastExam(index){
+  const a=(progress().attempts||[])[index];
+  if(!a || !a.questionIds || !Array.isArray(a.answers)){
+    alert("Essa prova foi realizada em uma versão anterior e não possui dados suficientes para revisão.");
+    return;
+  }
+  const items=a.questionIds.map((id,i)=>{
+    const q=BANK.find(x=>x.id===id);
+    if(!q)return "";
+    const selected=a.answers[i];
+    const answered=selected!==undefined && selected!==null;
+    const ok=answered && Number(selected)===Number(q.answer);
+    const chosen=answered && q.options[selected] ? q.options[selected].replace(/\s*✓\s*$/,"") : "Não respondida";
+    const correct=q.options[q.answer].replace(/\s*✓\s*$/,"");
+    return `<div class="old-review-item ${ok?"ok":"bad"}">
+      <b>${i+1}. ${q.question}</b><br>
+      <small>${ok?"✓ Acertou":"✗ Errou"} — Sua resposta: ${chosen}<br>
+      Resposta correta: ${String.fromCharCode(65+q.answer)}) ${correct}<br>
+      💡 ${q.explanation||"Sem explicação cadastrada."}</small>
+    </div>`;
+  }).join("");
+  const d=new Date(a.date);
+  const box=$("historyList");
+  box.innerHTML=`<div class="old-review">
+    <h3 style="margin-top:0">📄 Revisão da prova</h3>
+    <p style="color:var(--muted)">${d.toLocaleDateString("pt-BR")} às ${d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})}
+    · <strong style="color:var(--yellow)">${a.correct}/${a.total} acertos</strong></p>
+    ${items}
+    <button class="primary" style="margin-top:16px" onclick="renderHistory()">← Voltar ao histórico</button>
+  </div>`;
+}
+</script>
+
 </body>
 </html>
