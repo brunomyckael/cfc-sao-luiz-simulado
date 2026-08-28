@@ -271,7 +271,153 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
 .old-review-item:last-child{border-bottom:0}
 .old-review-item.ok{border-left:4px solid #35b96b;padding-left:12px}
 .old-review-item.bad{border-left:4px solid #ef6262;padding-left:12px}
+
+/* Mobile navigation: desktop remains unchanged */
+.mobile-menu-btn,.mobile-drawer,.mobile-menu-overlay{display:none}
+
 </style>
+
+<style>
+@media(max-width:650px){
+  .mobile-menu-btn{
+    display:grid!important;
+    place-items:center;
+    width:36px;
+    height:36px;
+    padding:0;
+    margin-left:2px;
+    border:1px solid #ffffff55;
+    border-radius:10px;
+    background:#062d63;
+    color:#fff;
+    font-size:25px;
+    line-height:1;
+    cursor:pointer;
+  }
+  .logo-mobile{
+    display:block!important;
+    width:43px;
+    height:43px;
+    object-fit:contain;
+    flex:0 0 43px;
+    border-radius:8px;
+  }
+  .brand-mobile{gap:7px;min-width:0}
+  .brand-title{font-size:14px}
+  .brand-subtitle{font-size:8px;letter-spacing:1.2px}
+  .top-instructor{gap:7px}
+  .top-instructor>span:first-child{font-size:12px}
+  .avatar{width:32px;height:32px;font-size:16px}
+  #scoreTop{font-size:14px}
+
+  .mobile-menu-overlay{
+    display:block;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.58);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .2s ease,visibility .2s ease;
+    z-index:90;
+  }
+  .mobile-drawer{
+    display:flex;
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    width:min(86vw,350px);
+    background:linear-gradient(180deg,#062d63 0%,#041a36 100%);
+    color:#fff;
+    flex-direction:column;
+    padding:18px 16px calc(18px + env(safe-area-inset-bottom));
+    box-shadow:-12px 0 35px rgba(0,0,0,.38);
+    transform:translateX(105%);
+    transition:transform .22s ease;
+    z-index:100;
+    overflow-y:auto;
+  }
+  body.mobile-menu-open .mobile-menu-overlay{
+    opacity:1;
+    visibility:visible;
+  }
+  body.mobile-menu-open .mobile-drawer{
+    transform:translateX(0);
+  }
+  body.mobile-menu-open{overflow:hidden}
+
+  .mobile-drawer-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:4px 2px 4px;
+  }
+  .mobile-drawer-logo{
+    width:130px;
+    max-width:58%;
+    height:auto;
+    object-fit:contain;
+  }
+  .mobile-close-btn{
+    width:40px;
+    height:40px;
+    border:1px solid #ffffff35;
+    border-radius:50%;
+    background:#ffffff0d;
+    color:#fff;
+    font-size:30px;
+    line-height:1;
+  }
+  .mobile-drawer-brand{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    padding:10px 4px 17px;
+    border-bottom:1px solid #ffffff20;
+  }
+  .mobile-drawer-brand strong{font-size:20px;letter-spacing:.7px}
+  .mobile-drawer-brand span{font-size:10px;color:#ffbf25;font-weight:850;letter-spacing:1.5px}
+  .mobile-nav{
+    display:grid;
+    gap:2px;
+    margin-top:10px;
+  }
+  .mobile-nav button{
+    border:0;
+    border-bottom:1px solid #ffffff16;
+    background:transparent;
+    color:#fff;
+    text-align:left;
+    min-height:56px;
+    padding:11px 8px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:14px;
+    font-weight:800;
+  }
+  .mobile-nav button:active,
+  .mobile-nav button:hover{background:#ffffff10}
+  .mobile-nav button span{
+    width:24px;
+    text-align:center;
+    font-size:18px;
+    color:#fff;
+  }
+  .mobile-drawer-footer{
+    margin-top:auto;
+    padding:16px 5px 2px;
+    border-top:1px solid #ffffff20;
+    display:grid;
+    gap:8px;
+    font-size:12px;
+    color:#d9e5f5;
+  }
+  .mobile-drawer-footer a{color:#fff;text-decoration:none;font-weight:800}
+}
+</style>
+
 </head>
 <header>
   <div class="topbar">
@@ -286,6 +432,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
       <span>Instrutor Bruno</span>
       <span class="avatar">👤</span>
       <span id="scoreTop">0/0</span>
+      <button class="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Abrir menu">⋮</button>
     </div>
   </div>
 </header>
@@ -311,6 +458,33 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
       <div><strong>Meta de aprovação</strong><b>80% ou mais!</b><small>Você consegue!</small></div>
     </div>
   </aside>
+
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Menu principal">
+    <div class="mobile-drawer-head">
+      <img src="logo-cfc-sao-luiz.png" alt="CFC São Luiz" class="mobile-drawer-logo">
+      <button type="button" class="mobile-close-btn" onclick="closeMobileMenu()" aria-label="Fechar menu">×</button>
+    </div>
+    <div class="mobile-drawer-brand">
+      <strong>CFC SÃO LUIZ</strong>
+      <span>SIMULADO CNH GOIÁS</span>
+    </div>
+    <nav class="mobile-nav">
+      <button onclick="mobileNav(goHome)"><span>⌂</span>Início</button>
+      <button onclick="mobileNav(startExam)"><span>▣</span>Simulado Completo</button>
+      <button onclick="mobileNav(startQuick)"><span>◉</span>Simulado Rápido</button>
+      <button onclick="mobileNav(openCustomTraining)"><span>✎</span>Treino Personalizado</button>
+      <button onclick="mobileNav(openSubjects)"><span>▤</span>Estudar por Assunto</button>
+      <button onclick="mobileNav(startWrongQuestions)"><span>✓</span>Praticar Meus Erros</button>
+      <button onclick="mobileNav(openDashboard)"><span>▥</span>Desempenho</button>
+      <button onclick="mobileNav(openHistoryPanel)"><span>◷</span>Histórico</button>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <div>📍 Cocalzinho de Goiás - GO</div>
+      <a href="https://wa.me/556233391523" target="_blank" rel="noopener">💬 (62) 3339-1523</a>
+    </div>
+  </aside>
+
   <div class="content-area">
     <div class="hero-banner">
       <div>
@@ -829,6 +1003,20 @@ function viewPastExam(index){
     ${items}
     <button class="primary" style="margin-top:16px" onclick="renderHistory()">← Voltar ao histórico</button>
   </div>`;
+}
+</script>
+
+
+<script>
+function toggleMobileMenu(){
+  document.body.classList.toggle("mobile-menu-open");
+}
+function closeMobileMenu(){
+  document.body.classList.remove("mobile-menu-open");
+}
+function mobileNav(action){
+  closeMobileMenu();
+  setTimeout(()=>action(),120);
 }
 </script>
 
