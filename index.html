@@ -275,6 +275,48 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
 /* Mobile navigation: desktop remains unchanged */
 .mobile-menu-btn,.mobile-drawer,.mobile-menu-overlay{display:none}
 
+
+/* ===== V9.6 — Simulado Prova ===== */
+.proof-mode-badge{background:#102c55;color:#ffbd20;border:1px solid #2e75c8}
+.proof-layout{display:block}
+.proof-aside{display:none}
+.proof-layout.proof-active{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:18px;align-items:start}
+.proof-layout.proof-active .proof-aside{display:grid;gap:14px}
+.proof-layout.proof-active .proof-main .card{margin-top:14px!important}
+.proof-layout.proof-active .proof-main .card{min-height:calc(100vh - 235px)}
+.proof-timer-card{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;margin-bottom:12px;border:1px solid #f4c400;border-radius:13px;background:#0a2e5f}
+.proof-timer-card small{display:block;color:#b9cce4;font-size:10px;font-weight:800}
+.proof-timer-card strong{display:block;color:#ffcf22;font-size:28px;line-height:1.1;margin-top:2px;font-variant-numeric:tabular-nums}
+.proof-finish-btn{border:1px solid #ef6b73;border-radius:9px;background:transparent;color:#ff7079;font-weight:850;padding:10px 12px;cursor:pointer;white-space:nowrap}
+.proof-finish-btn:hover{background:#ff707915}
+.proof-navigator{margin:0;padding:16px;border:1px solid #173d6d;border-radius:16px;background:linear-gradient(180deg,#0a2e5f,#071f40);color:#fff;box-shadow:0 8px 24px #062d6320}
+.proof-nav-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.proof-nav-title small{color:#b9cce4}
+.proof-numbers{display:grid;grid-template-columns:repeat(5,minmax(42px,1fr));gap:7px}
+.proof-num{min-height:40px;border:1px solid #35577e;border-radius:9px;background:#102f53;color:#eaf3ff;font-weight:850;cursor:pointer}
+.proof-num:hover{border-color:#6fa8e8}
+.proof-num.answered{background:#123f36;border-color:#37b779;color:#d8ffeb}
+.proof-num.current{outline:3px solid #ffbd20;outline-offset:1px}
+.proof-num.answered.current{background:#175342}
+.proof-legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;color:#b9cce4;font-size:11px}
+.proof-legend span{display:flex;align-items:center;gap:5px}
+.proof-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;border:1px solid #496783;background:#102f53}
+.proof-legend i.answered{background:#35b96b;border-color:#35b96b}
+.proof-legend i.current{background:#ffbd20;border-color:#ffbd20}
+.live-card{padding:14px;border:1px solid #173d6d;border-radius:16px;background:#071f40;color:#fff;box-shadow:0 8px 24px #062d6320}
+.live-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;font-size:14px}
+.live-head span{font-size:10px;font-weight:900;color:#63e6a8;display:flex;align-items:center;gap:5px}
+.live-head span i{width:8px;height:8px;border-radius:50%;background:#35d58a;display:inline-block;box-shadow:0 0 0 3px #35d58a20}
+.camera-box{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:#102f53;border:1px solid #31567d;display:grid;place-items:center}
+#proofCamera{width:100%;height:100%;object-fit:cover;display:none;transform:scaleX(-1)}
+.camera-placeholder{display:grid;place-items:center;gap:4px;text-align:center;color:#b9cce4;padding:20px}
+.camera-placeholder b{color:#fff;font-size:13px}.camera-placeholder small{font-size:10px}
+.camera-btn{width:100%;margin-top:10px;background:#edf4fc;color:#12375f}
+.camera-note{display:block;color:#8fa8c4;font-size:9px;line-height:1.4;margin-top:8px}
+.proof-review-alert{margin-top:12px;padding:12px;border-radius:10px;background:#fff8df;border:1px solid #ecd37b;color:#634f0d}
+@media(max-width:1100px) and (min-width:768px){.proof-layout.proof-active{grid-template-columns:minmax(0,1fr) 300px}.proof-numbers{grid-template-columns:repeat(5,minmax(38px,1fr))}}
+@media(max-width:767px){.proof-layout.proof-active{display:block}.proof-layout.proof-active .proof-aside{display:grid;margin-top:14px}.proof-layout.proof-active .proof-main .card{min-height:0}}
+@media(max-width:650px){.proof-layout.proof-active .proof-aside{display:grid}.proof-numbers{grid-template-columns:repeat(6,minmax(36px,1fr));gap:7px}.proof-num{min-height:42px}.proof-nav-title{align-items:flex-start;flex-direction:column;gap:2px}}
 </style>
 
 <style>
@@ -446,6 +488,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
     <nav class="side-nav">
       <button class="side-item active" onclick="goHome()">⌂ <span>Início</span></button>
       <button class="side-item" onclick="startExam()">▣ <span>Simulado Completo</span></button>
+      <button class="side-item" onclick="startProofExam()">▤ <span>Simulado Prova</span></button>
       <button class="side-item" onclick="startQuick()">◉ <span>Simulado Rápido</span></button>
       <button class="side-item" onclick="openCustomTraining()">✎ <span>Treino Personalizado</span></button>
       <button class="side-item" onclick="openSubjects()">▤ <span>Estudar por Assunto</span></button>
@@ -472,6 +515,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
     <nav class="mobile-nav">
       <button onclick="mobileNav(goHome)"><span>⌂</span>Início</button>
       <button onclick="mobileNav(startExam)"><span>▣</span>Simulado Completo</button>
+      <button onclick="mobileNav(startProofExam)"><span>▤</span>Simulado Prova</button>
       <button onclick="mobileNav(startQuick)"><span>◉</span>Simulado Rápido</button>
       <button onclick="mobileNav(openCustomTraining)"><span>✎</span>Treino Personalizado</button>
       <button onclick="mobileNav(openSubjects)"><span>▤</span>Estudar por Assunto</button>
@@ -518,6 +562,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
 <p>Plataforma de estudos baseada nos materiais enviados e no Banco Nacional de Questões. Agora o banco está estruturado com 1.500 questões para sorteio e estudo por assunto.</p>
 <div class="grid">
 <div class="mode" onclick="startExam()"><strong>🏁 Simulado completo</strong><small>30 questões • resultado • revisão dos erros</small></div>
+<div class="mode" onclick="startProofExam()"><strong>📝 Simulado prova</strong><small>30 questões • 60 minutos • pode voltar e revisar</small></div>
 <div class="mode" onclick="startQuick()"><strong>⚡ Simulado rápido</strong><small>10 questões sorteadas do banco desta versão</small></div>
 <div class="mode" onclick="openSubjects()"><strong>📚 Estudar por assunto</strong><small>Escolha uma matéria e pratique com explicação</small></div>
 </div>
@@ -638,15 +683,35 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
 
 <section id="quiz" class="hidden">
 <div id="examTimerWrap"><div id="examTimer" class="exam-timer" aria-live="polite">⏱ 60:00</div></div>
-
 <div class="topline"><span id="counter" class="pill"></span><span id="difficulty" class="pill"></span></div>
-<div class="card" style="margin-top:14px">
-<div id="module" class="pill"></div>
-<div id="plate" class="plate-wrap hidden"><div><div class="pill" style="margin-bottom:8px">👀 Observe a placa</div><img id="plateImg" class="plate-img" alt=""></div></div>
-<div id="question" class="question"></div>
-<div id="options" class="options"></div>
-<div id="explain" class="explain hidden"></div>
-<div class="nav"><button class="secondary" onclick="goHome()">Sair</button><button id="nextBtn" class="primary" onclick="nextQuestion()">Próxima</button></div>
+<div id="proofLayout" class="proof-layout">
+  <div class="proof-main">
+    <div class="card" style="margin-top:14px">
+      <div id="module" class="pill"></div>
+      <div id="plate" class="plate-wrap hidden"><div><div class="pill" style="margin-bottom:8px">👀 Observe a placa</div><img id="plateImg" class="plate-img" alt=""></div></div>
+      <div id="question" class="question"></div>
+      <div id="options" class="options"></div>
+      <div id="explain" class="explain hidden"></div>
+      <div class="nav"><button class="secondary" onclick="goHome()">Sair</button><button id="prevBtn" class="secondary" style="display:none" onclick="previousQuestion()">← Anterior</button><button id="nextBtn" class="primary" onclick="nextQuestion()">Próxima</button></div>
+    </div>
+  </div>
+  <aside id="proofAside" class="proof-aside hidden">
+    <div class="live-card">
+      <div class="proof-timer-card"><div><small>Tempo restante</small><strong id="proofTimer">⏱ 60:00</strong></div><button type="button" class="proof-finish-btn" onclick="finishProof()">⚑ Finalizar prova</button></div>
+      <div class="live-head"><strong>Monitoramento da prova</strong><span><i></i> AO VIVO</span></div>
+      <div class="camera-box">
+        <video id="proofCamera" autoplay muted playsinline></video>
+        <div id="cameraPlaceholder" class="camera-placeholder">📷<b>Câmera desativada</b><small>Ative para testar o monitoramento.</small></div>
+      </div>
+      <button id="cameraBtn" class="secondary camera-btn" type="button" onclick="toggleProofCamera()">Ativar câmera</button>
+      <small class="camera-note">A câmera funciona somente neste dispositivo e não envia a imagem para o site.</small>
+    </div>
+    <div id="proofNavigator" class="proof-navigator">
+      <div class="proof-nav-title"><strong>Questões</strong><small>Selecione um número para revisar</small></div>
+      <div id="proofNumbers" class="proof-numbers"></div>
+      <div class="proof-legend"><span><i class="answered"></i> Respondida</span><span><i class="blank"></i> Em branco</span><span><i class="current"></i> Atual</span></div>
+    </div>
+  </aside>
 </div>
 </section>
 
@@ -689,7 +754,7 @@ function pick(base,n){return shuffle(smartPool(base)).slice(0,Math.min(n,base.le
 
 let examTimerInterval=null, examSecondsLeft=3600;
 function stopExamTimer(){if(examTimerInterval){clearInterval(examTimerInterval);examTimerInterval=null;}}
-function ensureExamTimer(){const e=document.getElementById("examTimer");if(e)e.textContent="⏱ "+String(Math.floor(examSecondsLeft/60)).padStart(2,"0")+":"+String(examSecondsLeft%60).padStart(2,"0");}
+function ensureExamTimer(){const text="⏱ "+String(Math.floor(examSecondsLeft/60)).padStart(2,"0")+":"+String(examSecondsLeft%60).padStart(2,"0");const e=document.getElementById("examTimer");if(e)e.textContent=text;const p=document.getElementById("proofTimer");if(p)p.textContent=text;}
 
 function showReviewExplanations(){
   document.querySelectorAll(".explain").forEach(el=>{el.style.display="block";});
@@ -697,11 +762,16 @@ function showReviewExplanations(){
 function hideQuestionExplanations(){
   document.querySelectorAll(".explain").forEach(el=>{el.style.display="none";});
 }
-function startExamTimer(){stopExamTimer();examSecondsLeft=3600;ensureExamTimer();examTimerInterval=setInterval(()=>{examSecondsLeft--;ensureExamTimer();if(examSecondsLeft<=0){stopExamTimer();alert("⏰ O tempo da prova terminou.");if(typeof finishQuiz==="function")finishQuiz();else if(typeof finish==="function")finish();}},1000);}
+function startExamTimer(){stopExamTimer();examSecondsLeft=3600;ensureExamTimer();examTimerInterval=setInterval(()=>{examSecondsLeft--;ensureExamTimer();if(examSecondsLeft<=0){stopExamTimer();alert("⏰ O tempo da prova terminou.");if(typeof finishQuiz==="function")finishQuiz();else if(typeof finish==="function")finish();else if(typeof showResult==="function")showResult();}},1000);}
+function setProofLayout(active){const layout=$("proofLayout"),aside=$("proofAside");if(layout)layout.classList.toggle("proof-active",!!active);if(aside)aside.classList.toggle("hidden",!active);if(!active)stopProofCamera();}
 function startExam(){
-  hideQuestionExplanations();
+  hideQuestionExplanations();setProofLayout(false);
   startExamTimer();mode="exam";quiz=pick(BANK,30);index=0;answers=[];show("quiz");render()}
-function startQuick(){mode="quick";quiz=pick(BANK,10);index=0;answers=[];show("quiz");render()}
+function startProofExam(){
+  hideQuestionExplanations();setProofLayout(true);
+  startExamTimer();mode="prova";quiz=pick(BANK,30);index=0;answers=[];show("quiz");render();
+}
+function startQuick(){setProofLayout(false);mode="quick";quiz=pick(BANK,10);index=0;answers=[];show("quiz");render()}
 function openSubjects(){
   const cats=[...new Set(BANK.map(q=>q.category))];
   $("subjectGrid").innerHTML="";
@@ -716,6 +786,7 @@ function openSubjects(){
   show("subjects");
 }
 function startSubject(category){
+  setProofLayout(false);
   mode="study";
   const pool=BANK.filter(q=>q.category===category);
   quiz=pick(pool,10);index=0;answers=[];show("quiz");render();
@@ -723,6 +794,7 @@ function startSubject(category){
 function startStudy(){openSubjects()}
 
 function startWrongQuestions(){
+  setProofLayout(false);
   const p=progress();
   const ids=unique(p.wrong||[]);
   const pool=ids.map(id=>BANK.find(q=>q.id===id)).filter(Boolean);
@@ -751,6 +823,7 @@ function cycleCustomQty(){
   customQty=a[(a.indexOf(customQty)+1)%a.length]; updateCustomButtons();
 }
 function startCustomTraining(){
+  setProofLayout(false);
   let pool=BANK;
   if(customCategory!=="Todos") pool=pool.filter(q=>q.category===customCategory);
   if(customDifficulty!=="Todas") pool=pool.filter(q=>q.difficulty===customDifficulty);
@@ -772,11 +845,21 @@ function renderSubjectStats(){
     return `<div><b>${k}</b><br><small>${pct}% — ${r.correct}/${r.total} acertos</small><div class="progress" style="margin-top:8px"><div class="bar" style="width:${pct}%"></div></div></div>`;
   }).join("") : `<div><small>Responda algumas questões para ver seu desempenho por matéria.</small></div>`;
 }
+let proofCameraStream=null;
+async function toggleProofCamera(){
+ const video=$("proofCamera"),placeholder=$("cameraPlaceholder"),btn=$("cameraBtn");if(!video||!placeholder||!btn)return;
+ if(proofCameraStream){stopProofCamera();return;}
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){alert("Este navegador não permite acesso à câmera.");return;}
+ try{proofCameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"user"},audio:false});video.srcObject=proofCameraStream;video.style.display="block";placeholder.style.display="none";btn.textContent="Desativar câmera";}
+ catch(e){alert("Não foi possível acessar a câmera. Verifique a permissão do navegador.");}
+}
+function stopProofCamera(){if(proofCameraStream){proofCameraStream.getTracks().forEach(t=>t.stop());proofCameraStream=null;}const video=$("proofCamera"),placeholder=$("cameraPlaceholder"),btn=$("cameraBtn");if(video){video.srcObject=null;video.style.display="none";}if(placeholder)placeholder.style.display="grid";if(btn)btn.textContent="Ativar câmera";}
+
 function render(){
   const q=quiz[index];
   $("counter").textContent=`Questão ${index+1} de ${quiz.length}`;
   $("difficulty").textContent=q.difficulty;
-  $("module").textContent=q.category+" • "+q.module;
+  $("module").textContent=(mode==="prova"?"📝 SIMULADO PROVA • ":"")+q.category+" • "+q.module;
   const plateSrc=(q.plateCode && (PLATE_IMAGES[q.plateCode] || PLATE_IMAGES[q.plateCode.split(" e ")[0]])) || q.image;
   if(plateSrc){
     $("plateImg").src=plateSrc;
@@ -794,17 +877,34 @@ function render(){
     const b=document.createElement("button");
     b.className="opt";
     b.textContent=String.fromCharCode(65+i)+") "+o.replace(/\s*✓\s*$/,"");
+    if(mode==="prova" && answers[index]===i) b.classList.add("selected");
     b.onclick=()=>answer(i,b);
     $("options").appendChild(b);
   });
-  $("nextBtn").textContent=index===quiz.length-1?"Finalizar":"Próxima";
+  $("nextBtn").textContent=index===quiz.length-1?(mode==="prova"?"Finalizar prova":"Finalizar"):"Próxima";
   const done=answers.filter(v=>v!==undefined).length;
   $("scoreTop").textContent=`${done}/${quiz.length}`;
+  $("prevBtn").style.display=(mode==="prova" && index>0)?"inline-flex":"none";
+  renderProofNavigator();
 }
-
 function answer(i,btn){
+  const q=quiz[index];
+
+  /* Simulado Prova: permite trocar a alternativa e não revela correção. */
+  if(mode==="prova"){
+    answers[index]=i;
+    [...$("options").children].forEach((b,j)=>{
+      b.disabled=false;
+      b.classList.remove("selected");
+    });
+    btn.classList.add("selected");
+    $("scoreTop").textContent=`${answers.filter(v=>v!==undefined).length}/${quiz.length}`;
+    return;
+  }
+
+  /* Todos os outros modos mantêm exatamente o comportamento atual. */
   if(answers[index]!==undefined)return;
-  const q=quiz[index],isCorrect=i===q.answer;
+  const isCorrect=i===q.answer;
   answers[index]=isCorrect;
   [...$("options").children].forEach((b,j)=>{
     b.disabled=true;
@@ -825,16 +925,57 @@ function answer(i,btn){
   saveProgress(p);
 }
 
+function renderProofNavigator(){
+  const wrap=$("proofNavigator");
+  if(!wrap)return;
+  const active=mode==="prova";
+  wrap.classList.toggle("hidden",!active);
+  if(!active)return;
+  const box=$("proofNumbers");
+  box.innerHTML="";
+  quiz.forEach((q,i)=>{
+    const b=document.createElement("button");
+    b.type="button";
+    b.className="proof-num";
+    b.textContent=i+1;
+    if(answers[i]!==undefined)b.classList.add("answered");
+    if(i===index)b.classList.add("current");
+    b.setAttribute("aria-label",`Questão ${i+1}${answers[i]!==undefined?" respondida":" em branco"}`);
+    b.onclick=()=>{index=i;render()};
+    box.appendChild(b);
+  });
+}
+function finishProof(){
+  const blank=answers.filter(v=>v===undefined).length;
+  if(blank>0){
+    const first=answers.findIndex(v=>v===undefined);
+    const go=confirm(`Você deixou ${blank} questão${blank===1?"":"ões"} em branco. Deseja revisar antes de finalizar?`);
+    if(go){index=first;render();return;}
+  }
+  showResult();
+}
+function previousQuestion(){
+  if(mode!=="prova")return;
+  if(index>0){index--;render();}
+}
 function nextQuestion(){
+  if(mode==="prova"){
+    if(index<quiz.length-1){index++;render()}else{finishProof()}
+    return;
+  }
   if(answers[index]===undefined){alert("Escolha uma alternativa antes de continuar.");return}
   if(index<quiz.length-1){index++;render()}else{showResult()}
 }
 
 function showResult(){
+  stopProofCamera();
+  setProofLayout(false);
   showReviewExplanations();
   stopExamTimer();
   show("result");
-  const c=answers.filter(Boolean).length,w=quiz.length-c,p=Math.round(c/quiz.length*100);
+  const selectedAnswers=(mode==="prova") ? [...answers] : answers.map(v=>v?null:null);
+  const c=(mode==="prova") ? quiz.reduce((s,q,i)=>s+(answers[i]===q.answer?1:0),0) : answers.filter(Boolean).length;
+  const w=quiz.length-c,p=Math.round(c/quiz.length*100);
   $("score").textContent=`${c}/${quiz.length}`;
   $("correct").textContent=c;$("wrong").textContent=w;$("percent").textContent=p+"%";
   $("status").className=p>=67?"approved":"failed";
@@ -842,11 +983,15 @@ function showResult(){
 
   const prog=progress();
   prog.attempts=prog.attempts||[];
-  prog.attempts.push({date:new Date().toISOString(),correct:c,total:quiz.length,percent:p,mode,questionIds:quiz.map(q=>q.id),answers:[...answers]});
+  prog.attempts.push({date:new Date().toISOString(),correct:c,total:quiz.length,percent:p,mode,questionIds:quiz.map(q=>q.id),answers:mode==="prova"?quiz.map((q,i)=>answers[i]===q.answer):[...answers],selectedAnswers:mode==="prova"?[...answers]:null});
   if(prog.attempts.length>50)prog.attempts=prog.attempts.slice(-50);
   saveProgress(prog);
 
-  $("review").innerHTML=quiz.map((q,i)=>`<div class="${answers[i]?'ok':'bad'}"><b>${i+1}. ${q.question}</b><br><small>${answers[i]?'✓ Acertou':'✗ Errou'} — Resposta: ${String.fromCharCode(65+q.answer)}) ${q.options[q.answer].replace(/\s*✓\s*$/,"")}<br>${q.explanation}</small></div>`).join("");
+  $("review").innerHTML=quiz.map((q,i)=>{
+    const ok=(mode==="prova") ? answers[i]===q.answer : !!answers[i];
+    const selected=(mode==="prova" && answers[i]!==undefined && q.options[answers[i]]) ? q.options[answers[i]].replace(/\s*✓\s*$/,"") : null;
+    return `<div class="${ok?'ok':'bad'}"><b>${i+1}. ${q.question}</b><br><small>${ok?'✓ Acertou':'✗ Errou'}${selected?' — Sua resposta: '+selected+'<br>':''}Resposta correta: ${String.fromCharCode(65+q.answer)}) ${q.options[q.answer].replace(/\s*✓\s*$/,"")}<br>${q.explanation}</small></div>`;
+  }).join("");
 }
 
 
@@ -934,7 +1079,7 @@ function show(id){
   $("openPlatform").classList.toggle("hidden",id!=="home");
   window.scrollTo({top:0,behavior:"smooth"});
 }
-function goHome(){show("home");$("scoreTop").textContent="0/0"}
+function goHome(){stopProofCamera();setProofLayout(false);show("home");$("scoreTop").textContent="0/0"}
 </script>
 
 <footer class="site-footer">

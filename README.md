@@ -1,8 +1,3 @@
-# Simulado CNH Goiás — V9.4.7
+# Simulado CNH Goiás — V9.6.1
 
-Ajuste exclusivamente para celular:
-- Logo do CFC visível no cabeçalho mobile.
-- Botão de três pontos abre menu lateral.
-- Menu mobile contém Início, simulados, treino, assuntos, erros, Desempenho e Histórico.
-- Desempenho e Histórico continuam usando as funções separadas.
-- Desktop permanece com o layout e navegação da V9.4.6.
+Base: V9.6.1. Mantém a identidade visual, logo, cores, menu e demais telas. O **Simulado Prova no computador** recebeu o novo miolo em duas áreas: questões à esquerda e, à direita, monitoramento local opcional por câmera e navegador das 30 questões. A câmera usa `getUserMedia` no dispositivo e não envia a imagem para um servidor.
