@@ -914,8 +914,16 @@ function registerFreeExamCompletion(){
 }
 function startExam(){
   if(!canStartFreeExam()){openFreemiumModal();return;}
-  hideQuestionExplanations();setProofLayout(false);
-  mode="exam";quiz=pick(BANK,30);index=0;answers=[];pickedAnswers=[];show("quiz");render();startExamTimer()
+  stopExamTimer();
+  mode="exam";
+  quiz=pick(BANK,30);
+  index=0;
+  answers=[];
+  pickedAnswers=[];
+  show("quiz");
+  render();
+  hideQuestionExplanations();
+  startExamTimer();
 }
 function startProofExam(){
   hideQuestionExplanations();setProofLayout(true);
