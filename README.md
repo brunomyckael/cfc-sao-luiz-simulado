@@ -1,3 +1,3 @@
-# Simulado CNH Goiás — V9.6.3
+# Simulado CNH Goiás — V9.9
 
-Base: V9.6.3. Mantém a identidade visual, logo, cores, menu e demais telas. O **Simulado Prova no computador** recebeu o ajuste de largura para melhorar a visualização: área central mais ampla, pergunta e alternativas com leitura mais confortável, mantendo à direita o monitoramento local opcional por câmera e o navegador das 30 questões. A câmera usa `getUserMedia` no dispositivo e não envia a imagem para um servidor.
+Base: V9.8. Mantém a identidade visual, o Simulado Prova em duas áreas, os espaços de anúncio e o histórico. A V9.9 acrescenta estudo inteligente dos erros, priorizando questões com mais erros e permitindo praticar as prioridades primeiro. A câmera do Simulado Prova continua local via `getUserMedia`.
