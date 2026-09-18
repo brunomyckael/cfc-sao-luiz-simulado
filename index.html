@@ -162,25 +162,34 @@ main{max-width:1400px;margin:28px auto;padding:0 26px}
   .open-features span{font-size:11px}
 }
 
-/* ===== V9.9 — espaços de monetização (AdSense-ready) ===== */
+/* ===== V10.0 — espaços de monetização (mockup AdSense-ready) ===== */
 .ad-slot{
   margin-top:18px;
-  min-height:92px;
-  border:1px dashed #b9cbe0;
+  min-height:108px;
+  border:1px solid #d7e2ef;
   border-radius:16px;
-  background:linear-gradient(180deg,#fbfdff,#f4f8fc);
+  background:linear-gradient(180deg,#ffffff,#f5f8fc);
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   padding:14px 18px;
-  color:#7b8ca3;
+  color:#71849b;
   font-size:12px;
   line-height:1.45;
+  box-shadow:0 4px 14px #062d6308;
+  position:relative;
+  overflow:hidden;
 }
-.ad-slot strong{display:block;color:#5d718b;font-size:13px;margin-bottom:3px}
-.ad-slot small{display:block;color:#8a9aae}
-.ad-slot-result{min-height:110px}
+.ad-slot:before{
+  content:"PUBLICIDADE";
+  position:absolute;
+  top:8px;left:10px;
+  font-size:9px;font-weight:900;letter-spacing:1px;color:#9aabba;
+}
+.ad-slot strong{display:block;color:#385574;font-size:13px;margin-bottom:4px}
+.ad-slot small{display:block;color:#7e91a6}
+.ad-slot-result{min-height:118px}
 @media(max-width:650px){.ad-slot{min-height:82px;margin-top:14px;padding:12px}.ad-slot strong{font-size:12px}}
 
 /* ===== V9.2 final polish ===== */
@@ -627,7 +636,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
   <div id="shareHelp" class="explain hidden">No celular: abra o site, toque em <strong>Compartilhar</strong> e envie pelo WhatsApp. No computador, copie o endereço da página e cole na conversa do aluno.</div>
 </div>
 <div class="ad-slot" id="adHome" aria-label="Espaço reservado para anúncio">
-  <div><strong>Espaço para anúncio</strong><small>Será exibido aqui após a configuração do AdSense.</small></div>
+  <div><strong>Prévia do anúncio</strong><small>Este é um espaço demonstrativo. O anúncio real será inserido após a configuração do AdSense.</small></div>
 </div>
 <div class="card" style="margin-top:18px">
 <strong>📊 Meu desempenho</strong>
@@ -784,12 +793,12 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
   <button id="filterWrongBtn" onclick="renderResultReview('wrong')">Somente erros</button>
 </div>
 <div class="ad-slot ad-slot-result" id="adResult" aria-label="Espaço reservado para anúncio">
-  <div><strong>Espaço para anúncio</strong><small>Será exibido aqui após a configuração do AdSense.</small></div>
+  <div><strong>Prévia do anúncio</strong><small>Este é um espaço demonstrativo. O anúncio real será inserido após a configuração do AdSense.</small></div>
 </div>
 <div id="review" class="review"></div>
 </div>
 </section>
-<div class="footer">Plataforma independente para estudo. Não é um site oficial do DETRAN-GO. Conteúdo baseado nos materiais fornecidos pelo usuário. V9.9 adiciona estudo inteligente dos erros, mantendo os espaços de monetização desativados até a configuração do AdSense.</div>
+<div class="footer">Plataforma independente para estudo. Não é um site oficial do DETRAN-GO. Conteúdo baseado nos materiais fornecidos pelo usuário. V10.0 prepara a monetização com prévias de anúncios, mantendo a prova livre de publicidade.</div>
 </main>
   </div>
 </div>
