@@ -1,7 +1,18 @@
-# Simulado CNH Goiás — V10.0
+# Simulado CNH Goiás — V10.0 (Auditoria 1.500)
 
-Baseado na V9.9 estável. Nesta versão, os espaços de monetização foram refinados com uma prévia visual de anúncio na página inicial e na tela de resultado. A tela de prova permanece sem publicidade.
+Versão revisada do Simulado CNH Goiás — CFC São Luiz.
 
-O anúncio demonstrativo não é um anúncio real e não contém scripts externos. Depois da aprovação/configuração do Google AdSense, esses espaços poderão receber os blocos reais.
+## Auditoria do banco
+- 1.500 questões analisadas.
+- 356 questões receberam correções/ajustes de conteúdo, redação, alternativas ou explicações.
+- 227 questões possuem associação com placas.
+- Verificação estrutural sem IDs duplicados, índices de resposta inválidos ou questões sem quatro alternativas.
+- Referências de sinalização conferidas com os manuais de sinalização disponíveis no projeto.
+- Questões sobre legislação foram revisadas para reduzir afirmações absolutas e alinhar a redação às regras aplicáveis.
 
-Mantém a identidade visual do CFC São Luiz, o banco de questões, o histórico, a revisão de erros, o estudo inteligente dos erros e o layout largo do Simulado Prova.
+## Placas
+- Corrigidos os pictogramas de indicação que apresentavam recortes deslocados.
+- Corrigido o caso TNA-06 (Patrimônio Natural), que estava mostrando a imagem de SAU-19 (Terminal Rodoviário).
+
+## Projeto
+A tela de prova, histórico, desempenho, treino personalizado e estudo por assunto foram preservados.
