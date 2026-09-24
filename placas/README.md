@@ -1,1 +1,0 @@
-Imagens das placas utilizadas pelo simulado.
