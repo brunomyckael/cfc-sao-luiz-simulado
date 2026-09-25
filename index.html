@@ -208,6 +208,7 @@ main{max-width:1400px;margin:28px auto;padding:0 26px}
 /* V9.3 — quiz focus */
 .quiz-focus #openPlatform{display:none!important}
 #quiz{max-width:980px;margin:0 auto}
+#quiz.complete-wide{max-width:1100px}
 @media(max-width:650px){#quiz{width:100%}.quiz-focus .hero-banner{display:none!important}}
 
 
@@ -853,13 +854,13 @@ function hideQuestionExplanations(){
 function startExamTimer(){stopExamTimer();examSecondsLeft=3600;ensureExamTimer();examTimerInterval=setInterval(()=>{examSecondsLeft--;ensureExamTimer();if(examSecondsLeft<=0){stopExamTimer();alert("⏰ O tempo da prova terminou.");if(typeof finishQuiz==="function")finishQuiz();else if(typeof finish==="function")finish();else if(typeof showResult==="function")showResult();}},1000);}
 function setProofLayout(active){const layout=$("proofLayout"),aside=$("proofAside"),qsec=$("quiz");if(layout)layout.classList.toggle("proof-active",!!active);if(aside)aside.classList.toggle("hidden",!active);if(qsec)qsec.classList.toggle("proof-wide",!!active);if(!active)stopProofCamera();}
 function startExam(){
-  hideQuestionExplanations();setProofLayout(false);
+  hideQuestionExplanations();setProofLayout(false);$("quiz").classList.add("complete-wide");
   startExamTimer();mode="exam";quiz=pick(BANK,30);index=0;answers=[];show("quiz");render()}
 function startProofExam(){
-  hideQuestionExplanations();setProofLayout(true);
+  hideQuestionExplanations();setProofLayout(true);$("quiz").classList.remove("complete-wide");
   startExamTimer();mode="prova";quiz=pick(BANK,30);index=0;answers=[];show("quiz");render();
 }
-function startQuick(){setProofLayout(false);mode="quick";quiz=pick(BANK,10);index=0;answers=[];show("quiz");render()}
+function startQuick(){$("quiz").classList.remove("complete-wide");setProofLayout(false);mode="quick";quiz=pick(BANK,10);index=0;answers=[];show("quiz");render()}
 function openSubjects(){
   const cats=[...new Set(BANK.map(q=>q.category))];
   $("subjectGrid").innerHTML="";
@@ -874,7 +875,7 @@ function openSubjects(){
   show("subjects");
 }
 function startSubject(category){
-  setProofLayout(false);
+  $("quiz").classList.remove("complete-wide");setProofLayout(false);
   mode="study";
   const pool=BANK.filter(q=>q.category===category);
   quiz=pick(pool,10);index=0;answers=[];show("quiz");render();
@@ -882,7 +883,7 @@ function startSubject(category){
 function startStudy(){openSubjects()}
 
 function startWrongQuestions(){
-  setProofLayout(false);
+  $("quiz").classList.remove("complete-wide");setProofLayout(false);
   const ranked=getSmartWrongItems();
   if(!ranked.length){alert("Você ainda não tem questões erradas salvas. Faça um simulado primeiro.");return;}
   const priority=ranked.slice(0,6).map(x=>x.q);
@@ -911,7 +912,7 @@ function cycleCustomQty(){
   customQty=a[(a.indexOf(customQty)+1)%a.length]; updateCustomButtons();
 }
 function startCustomTraining(){
-  setProofLayout(false);
+  $("quiz").classList.remove("complete-wide");setProofLayout(false);
   let pool=BANK;
   if(customCategory!=="Todos") pool=pool.filter(q=>q.category===customCategory);
   if(customDifficulty!=="Todas") pool=pool.filter(q=>q.difficulty===customDifficulty);
