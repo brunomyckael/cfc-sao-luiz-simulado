@@ -558,7 +558,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
     </nav>
     <div class="side-goal">
       <div class="goal-icon">🏆</div>
-      <div><strong>Meta de aprovação</strong><b>80% ou mais!</b><small>Você consegue!</small></div>
+      <div><strong>Meta de aprovação</strong><b>20 acertos em 30</b><small>Você consegue!</small></div>
     </div>
   </aside>
 
@@ -1089,10 +1089,12 @@ function showResult(){
   const finalSelectedAnswers=[...pickedAnswers];
   const c=(mode==="prova") ? quiz.reduce((s,q,i)=>s+(answers[i]===q.answer?1:0),0) : answers.filter(Boolean).length;
   const w=quiz.length-c,p=Math.round(c/quiz.length*100);
+  const prova30=(quiz.length===30 && (mode==="exam" || mode==="prova"));
+  const aprovado=prova30 && c>=20;
   $("score").textContent=`${c}/${quiz.length}`;
   $("correct").textContent=c;$("wrong").textContent=w;$("percent").textContent=p+"%";
-  $("status").className=p>=67?"approved":"failed";
-  $("status").textContent=p>=67?"SIMULADO CONCLUÍDO — META ATINGIDA! 🎉":"CONTINUE ESTUDANDO E TENTE NOVAMENTE 💪";
+  $("status").className=prova30?(aprovado?"approved":"failed"):"";
+  $("status").textContent=prova30?(aprovado?"SIMULADO CONCLUÍDO — META ATINGIDA! 🎉":"CONTINUE ESTUDANDO E TENTE NOVAMENTE 💪"):"TREINO CONCLUÍDO — confira seu desempenho.";
 
   const prog=progress();
   prog.attempts=prog.attempts||[];
