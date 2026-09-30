@@ -18,6 +18,7 @@ create table if not exists public.orders (
   status text not null default 'pending'
     check (status in ('pending','approved','rejected','cancelled','refunded','charged_back','in_process')),
   mp_preference_id text,
+  mp_init_point text,
   mp_payment_id text unique,
   external_reference text not null unique,
   created_at timestamptz not null default now(),
