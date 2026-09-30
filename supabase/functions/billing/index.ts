@@ -232,7 +232,10 @@ async function checkout(request, env) {
     await db(env, "orders?id=eq." + encodeURIComponent(order.id), {
       method: "PATCH",
       headers: { Prefer: "return=minimal" },
-      body: JSON.stringify({ mp_preference_id: pref.id || url })
+      body: JSON.stringify({
+        mp_preference_id: pref.id || null,
+        mp_init_point: url
+      })
     });
 
     return responseJson({
