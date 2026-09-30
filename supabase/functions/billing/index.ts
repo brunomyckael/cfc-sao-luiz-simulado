@@ -1,5 +1,3 @@
-import { createHmac, timingSafeEqual } from "node:crypto";
-
 const PRODUCT_CODE = "cfc-pro-30d";
 const PRODUCT_PRICE = 4.99;
 const PRODUCT_DAYS = 30;
@@ -89,10 +87,29 @@ function parseSignature(value) {
   return out;
 }
 
-function safeEqual(a, b) {
-  const aa = Buffer.from(a, "utf8");
-  const bb = Buffer.from(b, "utf8");
-  return aa.length === bb.length && timingSafeEqual(aa, bb);
+function hexToBytes(hex) {
+  const out = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < out.length; i++) out[i] = parseInt(hex.slice(i * 2, i * 2 + 2), 16);
+  return out;
+}
+
+function bytesEqual(a, b) {
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a[i] ^ b[i];
+  return diff === 0;
+}
+
+async function hmacHex(secret, message) {
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(message));
+  return Array.from(new Uint8Array(sig)).map(function(b){return b.toString(16).padStart(2, "0");}).join("");
 }
 
 function freshTimestamp(ts) {
@@ -115,11 +132,8 @@ async function verifyWebhook(request, env) {
   if (!p.ts || !p.v1 || !freshTimestamp(p.ts)) return false;
 
   const manifest = "id:" + dataId + ";request-id:" + requestId + ";ts:" + p.ts + ";";
-  const expected = createHmac("sha256", env.MP_WEBHOOK_SECRET)
-    .update(manifest)
-    .digest("hex");
-
-  return safeEqual(expected, p.v1);
+  const expected = await hmacHex(env.MP_WEBHOOK_SECRET, manifest);
+  return bytesEqual(new TextEncoder().encode(expected), new TextEncoder().encode(p.v1.toLowerCase()));
 }
 
 async function mpPreference(env, orderId, email) {
