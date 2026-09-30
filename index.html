@@ -522,6 +522,24 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
 .footer a{color:#0b55b8;text-decoration:none;font-weight:750}.footer a:hover{text-decoration:underline}
 </style>
 
+<meta name="description" content="Simulado CNH Goiás grátis com 1.500 questões, prova de 30 questões, treino por assunto e revisão de erros. Plataforma independente do CFC São Luiz.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#062d63">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://simuladocnhgoias.com.br/">
+<link rel="icon" type="image/png" href="logo-cfc-sao-luiz.png">
+<link rel="apple-touch-icon" href="logo-cfc-sao-luiz.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="CFC São Luiz">
+<meta property="og:title" content="Simulado CNH Goiás Grátis | CFC São Luiz">
+<meta property="og:description" content="1.500 questões para estudar para a CNH Goiás, com simulado completo, prova, treino e revisão de erros.">
+<meta property="og:url" content="https://simuladocnhgoias.com.br/">
+<meta property="og:image" content="https://simuladocnhgoias.com.br/logo-cfc-sao-luiz.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Simulado CNH Goiás Grátis | CFC São Luiz">
+<meta name="twitter:description" content="1.500 questões para estudar para a CNH Goiás, com simulados e revisão de erros.">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Simulado CNH Goiás","url":"https://simuladocnhgoias.com.br/","inLanguage":"pt-BR"},{"@type":"EducationalOrganization","name":"CFC São Luiz","url":"https://simuladocnhgoias.com.br/","logo":"https://simuladocnhgoias.com.br/logo-cfc-sao-luiz.png","telephone":"+55-62-3339-1523","areaServed":"GO"}]}</script>
 </head>
 <header>
   <div class="topbar">
@@ -755,7 +773,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
     <div class="card" style="margin-top:14px">
       <div id="module" class="pill"></div>
       <div id="plate" class="plate-wrap hidden"><div><div class="pill" style="margin-bottom:8px">👀 Observe a placa</div><div id="plateImages" class="plate-images"><img id="plateImg" class="plate-img" alt=""></div></div></div>
-      <div id="question" class="question"></div>
+      <div id="question" class="question" aria-live="polite"></div>
       <div id="options" class="options"></div>
       <div id="explain" class="explain hidden"></div>
       <div class="nav"><button class="secondary" onclick="goHome()">Sair</button><button id="prevBtn" class="secondary" style="display:none" onclick="previousQuestion()">← Anterior</button><button id="nextBtn" class="primary" onclick="nextQuestion()">Próxima</button></div>
@@ -783,7 +801,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
 
 <section id="result" class="hidden">
 <div class="card result">
-<h1>Resultado</h1><div id="score" class="score"></div><div id="status"></div>
+<h1>Resultado</h1><div id="score" class="score"></div><div id="status" role="status" aria-live="polite"></div>
 <div class="statgrid"><div class="stat"><b id="correct"></b><small>Acertos</small></div><div class="stat"><b id="wrong"></b><small>Erros</small></div><div class="stat"><b id="percent"></b><small>Aproveitamento</small></div></div>
 <div class="result-actions">
 <button class="primary" onclick="startExam()">Fazer novamente</button>
@@ -804,6 +822,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
 <div class="footer">
   <div>Plataforma independente para estudo. Não é um site oficial do DETRAN-GO. Conteúdo baseado nos materiais fornecidos pelo usuário.</div>
   <div style="margin-top:8px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
+    <a href="sobre.html">Sobre o Simulado</a>
     <a href="politica-privacidade.html">Política de Privacidade</a>
     <a href="termos-de-uso.html">Termos de Uso</a>
     <a href="https://wa.me/556233391523" target="_blank" rel="noopener">Contato</a>
@@ -968,6 +987,8 @@ function render(){
     sources.forEach((src,i)=>{
       const img=document.createElement("img");
       img.className="plate-img";
+      img.loading="lazy";
+      img.decoding="async";
       img.src=src;
       img.alt=plateCodes[i] ? `Placa ${plateCodes[i]}` : (q.imageAlt||"Placa de sinalização");
       (plateImages || $("plate")).appendChild(img);

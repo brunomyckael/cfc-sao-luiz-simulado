@@ -1,34 +1,47 @@
-# Auditoria completa — Banco de 1.500 questões
+# Auditoria completa — Banco e aplicação
 
-## Resultado final
+## Auditoria atual — 30/09/2026
 
-- Questões revisadas: **1.500 / 1.500**
-- Questões que tiveram alguma alteração: **355**
-- Linhas de correção previamente catalogadas em `correcoes_1500.csv`: **187**
-- Correções manuais adicionais: **29**
-- Ajustes de pós-verificação: **5**
-- Questões com `plateCode`: **227**
-- Questões com duas placas exibidas simultaneamente: **2 (IDs 45 e 46)**
-- Imagens de placas ausentes: **0**
-- Respostas com índice inválido: **0**
-- Questões sem exatamente 4 alternativas: **0**
-- IDs duplicados: **0**
-- Marcadores `✓` indevidos nas alternativas: **0**
-- Sintaxe JavaScript: **PASS**
-- Integridade do ZIP: **PASS**
+### Banco de questões
+- Questões integradas: 1.500 / 1.500
+- Questões com plateCode: 227
+- Questões com duas placas: 2 (IDs 45 e 46)
+- IDs duplicados: 0
+- Respostas com índice inválido: 0
+- Questões sem exatamente 4 alternativas: 0
+- Marcadores indevidos nas alternativas: 0 (conforme auditoria histórica do banco)
 
-## Principais grupos corrigidos
+### Placas e imagens
+- Códigos de placas efetivamente utilizados pelo banco: 88
+- Entradas atuais em PLATE_IMAGES: 147
+- Entradas do mapa apontando para arquivo inexistente: 0
+- Códigos usados pelo banco com imagem inexistente: 0
+- Referências locais de imagem encontradas no HTML e sem arquivo correspondente: 0
+- Mapeamento das placas de advertência migrado para os arquivos reais versionados em placas_pdf/advertencia_github/.
+- Referências legadas placas/ removidas do HTML.
 
-Foram corrigidos problemas de conteúdo e precisão jurídica, enunciados ambíguos, respostas incompatíveis com o código da placa, referências legais, regras de iluminação diurna, PPD/CNH, categorias de habilitação, retenção infantil, alcoolemia, primeiros socorros, classificação de infrações e várias falhas de redação/digitação.
+### Aplicação
+- Sintaxe JavaScript: PASS
+- Regra de aprovação para provas de 30 questões: 20 acertos ou mais
+- Simulado Completo com quadro ampliado: mantido
+- Simulado Prova com layout próprio: mantido
+- CNAME presente: simuladocnhgoias.com.br
+- robots.txt: presente
+- sitemap.xml: presente
+- Política de Privacidade: presente
+- Termos de Uso: presente
+- Página Sobre: presente
+- Página 404: presente
+- SEO básico: presente
 
-Também foi corrigida a apresentação visual das questões que comparam duas placas: **ID 45 (A-2a + A-2b)** e **ID 46 (A-32a + A-32b)**.
+## Histórico do banco
 
-## Arquivos
+A documentação histórica de versões anteriores registrava 227 questões com plateCode, duas questões com duas placas e as correções de conteúdo realizadas durante a revisão das 1.500 questões. Esses números continuam compatíveis com o banco atual.
 
-- `index.html`: banco e aplicação corrigidos.
-- `Banco_1500_Questao_Corrigido.csv`: exportação completa das 1.500 questões revisadas.
-- `Auditoria_1500_Diferencas.csv`: somente as questões que sofreram alguma alteração, com antes/depois.
+## Monetização
+
+O projeto mantém espaços demonstrativos de anúncios. O código real do Google AdSense e o ads.txt devem ser adicionados somente depois que o Google fornecer o identificador de publisher da conta.
 
 ## Observação
 
-A revisão foi feita usando o banco do projeto e os materiais oficiais/didáticos presentes no histórico, incluindo os manuais de sinalização e material da Senatran disponíveis no projeto. O repositório do GitHub não foi alterado nesta etapa.
+Esta auditoria avalia a estrutura e o conteúdo versionado no repositório. A aprovação pelo Google AdSense, a propagação de DNS e o comportamento efetivo em todos os navegadores dependem de serviços externos e devem ser verificados após a publicação.
