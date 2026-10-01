@@ -86,8 +86,11 @@ Deno.serve(async (req: Request) => {
       return json({ error: "Assinatura inválida" }, 401);
     }
 
-    const paymentId = String(payload?.data?.id ?? dataId);
-    if (!paymentId) return json({ ok: true });
+    const payloadPaymentId = payload?.data?.id == null ? "" : String(payload.data.id).toLowerCase();
+    if (payloadPaymentId && payloadPaymentId !== dataId) {
+      return json({ error: "ID do pagamento não corresponde à assinatura" }, 401);
+    }
+    const paymentId = dataId;
 
     const paymentResponse = await fetch(
       `https://api.mercadopago.com/v1/payments/${encodeURIComponent(paymentId)}`,
@@ -129,10 +132,9 @@ Deno.serve(async (req: Request) => {
       },
     );
 
-    if (!rpcResponse.ok) {
-      console.error("apply_payment_event failed", {
-        status: rpcResponse.status,
-      });
+    const rpcResult = rpcResponse.ok ? await rpcResponse.json().catch(() => null) : null;
+    if (!rpcResponse.ok || rpcResult !== true) {
+      console.error("apply_payment_event failed", { status: rpcResponse.status, accepted: rpcResult === true });
       return json({ error: "Falha ao processar evento de pagamento" }, 500);
     }
 
