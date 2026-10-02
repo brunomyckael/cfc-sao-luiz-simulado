@@ -6,6 +6,7 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ievxlpvuQxk_uOtIgdZIMQ_Ge5K_JTj
 const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 const setStatus = (text) => { const el = document.getElementById("proStatus"); if (el) el.textContent = text; };
 const credentials = () => ({
+  name: document.getElementById("proName").value.trim(),
   email: document.getElementById("proEmail").value.trim(),
   password: document.getElementById("proPassword").value,
 });
@@ -16,10 +17,17 @@ window.openProAccount = () => {
 };
 window.closeProAccount = () => document.getElementById("proAccount").classList.add("hidden");
 window.proSignUp = async () => {
-  const { email, password } = credentials();
+  const { name, email, password } = credentials();
+  if (name.length < 2) return setStatus("Informe seu nome.");
   if (!email || password.length < 6) return setStatus("Informe um e-mail válido e uma senha com pelo menos 6 caracteres.");
-  const { error } = await supabase.auth.signUp({ email, password });
-  setStatus(error ? error.message : "Conta criada. Confira seu e-mail para confirmar o cadastro e depois entre.");
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: { data: { full_name: name } },
+  });
+  if (error) return setStatus(error.message);
+  if (!data.session) return setStatus("Conta criada. Entre com seu e-mail e senha para continuar.");
+  await refreshProAccess();
 };
 window.proSignIn = async () => {
   const { email, password } = credentials();

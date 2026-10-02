@@ -642,6 +642,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
   <div class="card" style="width:min(440px,100%);max-height:90vh;overflow:auto">
     <div class="topline"><strong id="proTitle">⭐ Plano Pro</strong><button class="secondary" type="button" onclick="closeProAccount()" aria-label="Fechar">✕</button></div>
     <p>30 dias de acesso Pro por <strong>R$ 4,99</strong>. O acesso é liberado após a confirmação do pagamento.</p>
+    <label for="proName">Nome</label><input id="proName" type="text" autocomplete="name" minlength="2" style="display:block;width:100%;padding:12px;margin:6px 0 12px;border:1px solid var(--line);border-radius:10px">
     <label for="proEmail">E-mail</label><input id="proEmail" type="email" autocomplete="email" style="display:block;width:100%;padding:12px;margin:6px 0 12px;border:1px solid var(--line);border-radius:10px">
     <label for="proPassword">Senha</label><input id="proPassword" type="password" autocomplete="current-password" minlength="6" style="display:block;width:100%;padding:12px;margin:6px 0 12px;border:1px solid var(--line);border-radius:10px">
     <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="secondary" type="button" onclick="proSignUp()">Criar conta</button><button class="secondary" type="button" onclick="proSignIn()">Entrar</button><button class="primary" type="button" onclick="proBuy()">Comprar Pro</button></div>
