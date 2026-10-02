@@ -630,7 +630,7 @@ header{background:linear-gradient(135deg,#020b14,#0b55b8)}
     <div class="open-actions">
       <button class="primary" onclick="startExam()">🚗 Começar simulado</button>
       <button class="secondary" onclick="openSubjects()">📚 Estudar por assunto</button>
-      <button class="secondary" type="button" onclick="openProAccount()">⭐ Conhecer o Pro · R$ 4,99</button>
+      <button class="secondary" id="proEntryButton" type="button" onclick="openProAccount()">⭐ Conhecer o Pro · R$ 4,99</button>
     </div>
     <div class="open-features">
       <span>✓ 1.500 questões</span>
@@ -896,14 +896,21 @@ function hideQuestionExplanations(){
 }
 function startExamTimer(){stopExamTimer();examSecondsLeft=3600;ensureExamTimer();examTimerInterval=setInterval(()=>{examSecondsLeft--;ensureExamTimer();if(examSecondsLeft<=0){stopExamTimer();alert("⏰ O tempo da prova terminou.");if(typeof finishQuiz==="function")finishQuiz();else if(typeof finish==="function")finish();else if(typeof showResult==="function")showResult();}},1000);}
 function setProofLayout(active){const layout=$("proofLayout"),aside=$("proofAside"),qsec=$("quiz");if(layout)layout.classList.toggle("proof-active",!!active);if(aside)aside.classList.toggle("hidden",!active);if(qsec)qsec.classList.toggle("proof-wide",!!active);if(!active)stopProofCamera();}
+function requireStudyAccess(){
+  if(window.PAYMENT_ENABLED!==true||window.__proAccessActive)return true;
+  if(typeof window.openProAccount==="function")window.openProAccount();
+  return false;
+}
 function startExam(){
+  if(!requireStudyAccess())return;
   hideQuestionExplanations();setProofLayout(false);$("quiz").classList.add("complete-wide");
   startExamTimer();mode="exam";quiz=pick(BANK,30);index=0;answers=[];show("quiz");render()}
 function startProofExam(){
+  if(!requireStudyAccess())return;
   hideQuestionExplanations();setProofLayout(true);$("quiz").classList.remove("complete-wide");
   startExamTimer();mode="prova";quiz=pick(BANK,30);index=0;answers=[];show("quiz");render();
 }
-function startQuick(){$("quiz").classList.remove("complete-wide");setProofLayout(false);mode="quick";quiz=pick(BANK,10);index=0;answers=[];show("quiz");render()}
+function startQuick(){if(!requireStudyAccess())return;$("quiz").classList.remove("complete-wide");setProofLayout(false);mode="quick";quiz=pick(BANK,10);index=0;answers=[];show("quiz");render()}
 function openSubjects(){
   const cats=[...new Set(BANK.map(q=>q.category))];
   $("subjectGrid").innerHTML="";
@@ -918,6 +925,7 @@ function openSubjects(){
   show("subjects");
 }
 function startSubject(category){
+  if(!requireStudyAccess())return;
   $("quiz").classList.remove("complete-wide");setProofLayout(false);
   mode="study";
   const pool=BANK.filter(q=>q.category===category);
@@ -926,6 +934,7 @@ function startSubject(category){
 function startStudy(){openSubjects()}
 
 function startWrongQuestions(){
+  if(!requireStudyAccess())return;
   $("quiz").classList.remove("complete-wide");setProofLayout(false);
   const ranked=getSmartWrongItems();
   if(!ranked.length){alert("Você ainda não tem questões erradas salvas. Faça um simulado primeiro.");return;}
@@ -955,6 +964,7 @@ function cycleCustomQty(){
   customQty=a[(a.indexOf(customQty)+1)%a.length]; updateCustomButtons();
 }
 function startCustomTraining(){
+  if(!requireStudyAccess())return;
   $("quiz").classList.remove("complete-wide");setProofLayout(false);
   let pool=BANK;
   if(customCategory!=="Todos") pool=pool.filter(q=>q.category===customCategory);
