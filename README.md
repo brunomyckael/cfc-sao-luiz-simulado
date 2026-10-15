@@ -30,6 +30,10 @@ Plataforma independente de estudos para preparação teórica para a CNH em Goi�
 
 Os espaços de anúncio já estão preparados, mas o código do Google AdSense e o ads.txt ainda dependem do ID de publisher fornecido pelo Google. Nenhum identificador de publisher é inventado no projeto.
 
+## Métricas de acesso
+
+O projeto inclui integração opcional com Google Analytics 4, condicionada ao consentimento do visitante. A coleta permanece desativada até que o proprietário adicione o ID verdadeiro `G-...` do fluxo Web em `ga4-config.js`. Consulte [ANALYTICS_SETUP.md](ANALYTICS_SETUP.md) para configurar o GA4 e abrir relatórios de visitas, usuários ativos, páginas e origens.
+
 ## Avisos
 
 O site não é oficial do DETRAN-GO. Os resultados dos simulados servem para estudo e acompanhamento e não garantem aprovação em prova oficial.
