@@ -1,16 +1,12 @@
 # Acessos e visitas do site
 
-O site usa uma configuração compatível com hospedagem estática. O Google Analytics 4 (GA4) não envia dados enquanto o identificador da propriedade não for configurado. Quando configurado, a tag só é carregada para visitantes que aceitarem a análise no aviso de privacidade; a escolha pode ser alterada em **Privacidade**, no canto inferior da página.
+O site usa uma configuração compatível com hospedagem estática. A propriedade GA4 **Simulado CNH Goiás — Website** e o fluxo web de `https://simuladocnhgoias.com.br` já foram criados e configurados no site. A tag só é carregada para visitantes que aceitarem a análise no aviso de privacidade; a escolha pode ser alterada em **Privacidade**, no canto inferior da página. Os compartilhamentos opcionais da conta Analytics ficaram desativados.
 
-## Ativar a coleta
+## Configuração publicada
 
-1. Entre em [Google Analytics](https://analytics.google.com/) com a conta Google que deve ser proprietária dos dados.
-2. Crie ou selecione uma propriedade GA4 para **Simulado CNH Goiás**. Configure o fuso horário como **Brasil — Brasília** e a moeda como **BRL**.
-3. Em **Administrador → Coleta e modificação de dados → Fluxos de dados → Web**, crie um fluxo para `https://simuladocnhgoias.com.br`.
-4. Copie o **ID de métricas**, no formato `G-XXXXXXXXXX`.
-5. Edite `ga4-config.js` e substitua o valor vazio pelo ID verdadeiro. O ID de métricas é público por projeto; não coloque senhas, chaves de API nem credenciais nesse arquivo.
-6. Publique a alteração no branch `main` do repositório. O GitHub Pages publica o site automaticamente.
-7. Abra o site, aceite a análise e confira **Relatórios → Tempo real** no GA4. A primeira coleta pode levar algum tempo para aparecer.
+O fluxo web usa um **ID de métricas público** configurado em `ga4-config.js`. Não substitua esse valor por senhas, chaves de API ou credenciais. O site é publicado pelo GitHub Pages a partir do branch `main`.
+
+Para acessar os dados, entre em [Google Analytics](https://analytics.google.com/) usando a mesma conta Google em que a propriedade foi criada e selecione **Simulado CNH Goiás — Website**. A coleta começa após a publicação desta configuração e o consentimento dos visitantes; não há dados anteriores nem números de demonstração.
 
 ## Onde ver os dados
 
